@@ -1,1 +1,21 @@
-// TODO
+.container {
+  max-width: 43.75rem;
+  display: flex;
+  justify-content: start;
+
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  h2 {
+    display: flex;
+    align-items: end;
+    img {
+      margin-right: 1rem;
+    }
+    span {
+      color: var(--highlight);
+      font-weight: bold;
+      padding: 0 .2rem;
+    } 
+  }
+}

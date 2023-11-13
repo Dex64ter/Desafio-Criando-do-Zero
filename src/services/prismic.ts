@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import * as prismic from '@prismicio/client';
 import { HttpRequestLike } from '@prismicio/client';
 import { enableAutoPreviews } from '@prismicio/next';
@@ -12,7 +13,7 @@ export function getPrismicClient(config: PrismicConfig): prismic.Client {
   enableAutoPreviews({
     client,
     req: config.req,
-  })
+  });
 
   return client;
 }

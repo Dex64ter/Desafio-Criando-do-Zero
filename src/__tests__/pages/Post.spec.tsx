@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { render, screen } from '@testing-library/react';
 import {
   GetStaticPropsContext,
@@ -8,7 +9,7 @@ import { ParsedUrlQuery, parse } from 'querystring';
 
 import { useRouter } from 'next/router';
 import { getPrismicClient } from '../../services/prismic';
-import Post, { getStaticProps, getStaticPaths } from '../../pages/post/[slug]';
+import Post, { getStaticProps, getStaticPaths } from '../../pages/posts/[slug]';
 
 interface Post {
   first_publication_date: string | null;
