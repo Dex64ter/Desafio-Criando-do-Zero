@@ -1,7 +1,7 @@
 .container {
   max-width: 43.75rem;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-direction: column;
   margin: 0 auto;
   padding: 2rem 0;
@@ -10,7 +10,7 @@
     display: flex;
     margin: 1rem 0;
     padding: 0 1rem;
-    align-items: end;
+    align-items: flex-end;
     img {
       margin-right: 1rem;
     }
