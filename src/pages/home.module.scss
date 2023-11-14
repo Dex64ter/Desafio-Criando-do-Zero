@@ -2,12 +2,14 @@
   max-width: 43.75rem;
   display: flex;
   justify-content: start;
-
+  flex-direction: column;
   margin: 0 auto;
   padding: 2rem 0;
 
   h2 {
     display: flex;
+    margin: 1rem 0;
+    padding: 0 1rem;
     align-items: end;
     img {
       margin-right: 1rem;
@@ -18,4 +20,58 @@
       padding: 0 .2rem;
     } 
   }
+}
+
+.linkContent {
+  a {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 0;
+    padding: 1rem;
+
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: var(--background-500);
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    h4 {
+      color: var(--body);
+      font-size: 1.125rem;
+      font-weight: 400;
+      margin: 0.5rem 0 1.5rem;
+    }
+
+    p {
+      display: flex;
+      gap: 1.5rem;
+      
+      div {
+        display: flex;
+        gap: 0.5rem;
+
+        time, span {
+          color: var(--info);
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+
+}
+
+.loadMore {
+  width: 15rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  text-align: start;
+  background: transparent;
+  
+  color: var(--highlight);
+  border: none;
+  
 }
