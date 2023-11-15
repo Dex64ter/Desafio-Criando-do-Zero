@@ -42,8 +42,8 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
       </Head>
       <main className={styles.container}>
         <h2>
-          <img src='/images/Vector.svg' alt="logo da página" />
-          spacetraveling <span>.</span>
+          <img src='/images/logo.svg' alt="logo" />
+          
         </h2>
         <div className={styles.linkContent}>
           {
@@ -119,8 +119,6 @@ export const getStaticProps: GetStaticProps = async () => {
     pageSize: 4,
   });
   
-  // console.log(JSON.stringify(postsResponse, null, 2))
-  // console.log(postsResponse.next_page);
   const posts = postsResponse.results.map((post) => {
     return {
       uid: post.uid,
