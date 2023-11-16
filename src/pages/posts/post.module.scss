@@ -5,10 +5,8 @@
 }
 
 .article {
-  max-width: 50%;
-  margin-top: 5rem;
-  margin-left: 23.12rem;
-  // border: 1px solid red;
+  max-width: 43rem;
+  margin: 5rem 0 5rem 23.12rem;
 
   h1 {
     color: var(--heading);
@@ -20,6 +18,7 @@
     display: flex;
     gap: 1.5rem;
     align-items: center;
+    margin: 1rem 0 4rem;
 
     div {
       display: flex;
@@ -30,8 +29,50 @@
       font-size: 0.875rem;
       font-weight: 400;
       
-      margin: 1rem 0 4rem;
     }
   }
 }
 
+.content {
+  h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: 2rem;
+  }
+
+  .contentText {
+    color: var(--body);
+    font-size: 1.125rem;
+    font-weight: 400;
+
+    p {
+      margin: 1rem 0;
+      line-height: 1.75rem;
+
+      strong {
+        font-weight: 700;
+        color: var(--heading);
+      }
+
+    }
+    
+    a {
+      color: var(--highlight);
+      font-weight: 700;
+    }
+    
+    li {
+      margin: 1rem 1.125rem;
+      padding-left: 1rem;
+    }
+  }
+
+}
+
+@media (max-width: 720px) {
+  .article {
+    max-width: 40rem;
+    margin-left: 2.5rem;
+  }
+}

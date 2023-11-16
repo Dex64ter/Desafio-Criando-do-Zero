@@ -2,7 +2,22 @@
   max-width: 100%;
   padding: 2.5rem 0 2.5rem 23.12rem;
   
-  &:hover {
-    cursor: pointer;
+  img {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .containerHeader {
+    max-width: 100%;
+    padding: 2.5rem 0 2.5rem 2.5rem;
+    
+    img {
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }

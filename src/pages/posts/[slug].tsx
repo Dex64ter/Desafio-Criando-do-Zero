@@ -1,13 +1,15 @@
 /* eslint-disable prettier/prettier */
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
 import { format } from 'date-fns';
 import { RichText } from 'prismic-dom';
+import { useState } from 'react';
 import ptBR from 'date-fns/locale/pt-BR';
 import Head from 'next/head';
 import Header from '../../components/Header';
 
-import commonStyles from '../../styles/common.module.scss';
+// import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
 
 import { getPrismicClient } from '../../services/prismic';
@@ -35,14 +37,20 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps): JSX.Element {
+  
   const words = post.data.content.reduce((acc, content) => {
     const headingWords = content.heading.split(' ').length;
-    const bodyWords = RichText.asText(content.body).split(' ').length;
-    console.log(headingWords, bodyWords);
-    return acc + headingWords + bodyWords;
+    const totalWords = RichText.asText(content.body).split(' ').length;
+
+    return acc + headingWords + totalWords;
   }, 0);
 
   const estimatedTime = getEstimatedTime(words);
+
+  const router = useRouter();
+  if (router.isFallback) {
+    return <span> Carregando...</span>
+  }
   
   return (
     <>
@@ -75,6 +83,19 @@ export default function Post({ post }: PostProps): JSX.Element {
               <span>{estimatedTime} min</span>
             </div>
           </div>
+
+          <div className={styles.content}>
+            {
+              post.data.content.map(content => (
+                <div key={content.heading}>
+                  <h2>{content.heading}</h2>
+                  <div className={styles.contentText}>
+                    <div dangerouslySetInnerHTML={{ __html: RichText.asHtml(content.body)}}/>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
         </article>
       </main>
     </>
@@ -86,10 +107,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await prismic.getByType('posts', {});
 
   return {
-    paths: [],
-    fallback: 'blocking'
+    paths: posts.results.map(post => (
+      {
+        params: { slug: post.uid }
+      }
+    )),
 
-    // true, false, blocking
+    fallback: true
+
   }
 };
 
@@ -107,18 +132,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         url: response.data.main.url,
       },
       author: response.data.author,
-      content: response.data.content.map(content => {
-        return {
-          heading: content.heading,
-          body: content.body.map(bd => {
-            return {
-              text: bd.text,
-            }
-          })
-        }
-      })
+      content: response.data.content
     }
   }
+
+  console.log(JSON.stringify(post.data.content,null,2));
 
   return {
     props: {
