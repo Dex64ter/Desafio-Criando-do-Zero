@@ -1,15 +1,15 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react/no-danger */
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
 import { format } from 'date-fns';
 import { RichText } from 'prismic-dom';
-import { useState } from 'react';
+
 import ptBR from 'date-fns/locale/pt-BR';
 import Head from 'next/head';
 import Header from '../../components/Header';
 
-// import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
 
 import { getPrismicClient } from '../../services/prismic';
@@ -135,8 +135,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       content: response.data.content
     }
   }
-
-  console.log(JSON.stringify(post.data.content,null,2));
 
   return {
     props: {
