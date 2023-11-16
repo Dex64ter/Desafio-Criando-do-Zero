@@ -7,7 +7,6 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { useState } from 'react';
 
-import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 
 import { getPrismicClient } from '../services/prismic';
@@ -52,7 +51,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
                 <a>
                   <h1>{post.data.title}</h1>
                   <h4>{post.data.subtitle}</h4>
-                  <p>
+                  <div className={styles.infos}>
                     <div>
                       <FiCalendar/>
                       <time>
@@ -70,7 +69,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
                       <FiUser/>
                       <span>{post.data.author}</span>
                     </div>
-                  </p>
+                  </div>
                 </a>
               </Link>
               )
@@ -95,6 +94,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
                       data: {
                         title: post.data.title,
                         subtitle: post.data.subtitle,
+                        author: post.data.author
                       }
                     }
                   })
@@ -116,7 +116,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const postsResponse = await prismic.getByType('posts',
   {
     fetch: ['posts.title', 'posts.subtitle', 'posts.author', 'posts.main', 'posts.content' ],
-    pageSize: 4,
+    pageSize: 2,
   });
   
   const posts = postsResponse.results.map((post) => {
